@@ -8,8 +8,8 @@
   <h5 class="card-title">{{ plan.name }}</h5>
     
     <p>Start: {{ plan.start }}</p>
-     <a href="#" class="btn btn-primary">Edit </a>
-    <a href="#" class="btn btn-warning">Delete</a>
+     <a href="{% url 'plans_update' plan.id %}" class="btn btn-primary">Edit </a>
+    <a href="{% url 'plans_delete' plan.id %}" class="btn btn-danger">Delete</a>
  
   </div>
 </div>
