@@ -5,7 +5,7 @@
 
 {% for plan in plans %}
   <div class="card">
-    <a href="/plans/{{ plan.id }}">
+    <a href="{% url 'detail' plan.id %}">
     <div class="card-body">
     <h5 class="card-title">{{ plan.name }}</h5>
       
