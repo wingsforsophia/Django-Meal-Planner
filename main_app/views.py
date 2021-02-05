@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView
 from .models import Plan
 
 
@@ -13,3 +14,7 @@ def plans_index(request):
 def plans_detail(request, plan_id):
   plan = Plan.objects.get(id=plan_id)
   return render(request, 'plans/detail.html', { 'plan': plan })
+
+class PlanCreate(CreateView):
+  model = Plan
+  fields = '__all__'
