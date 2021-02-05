@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Plan
 
 
@@ -18,3 +18,11 @@ def plans_detail(request, plan_id):
 class PlanCreate(CreateView):
   model = Plan
   fields = '__all__'
+
+class PlanUpdate(UpdateView):
+  model = Plan
+  fields = '__all__'
+
+class PlanDelete(DeleteView):
+  model = Plan
+  success_url = '/plans/'    
