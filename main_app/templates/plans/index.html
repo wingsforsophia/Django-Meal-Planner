@@ -5,13 +5,13 @@
 
 {% for plan in plans %}
   <div class="card">
-    {% comment %} <a href="{% url 'detail' plan.id %}"> {% endcomment %}
+    <a href="/plans/{{ plan.id }}">
     <div class="card-body">
     <h5 class="card-title">{{ plan.name }}</h5>
       
       <p>Starting on: {{ plan.start }}</p>
          </div>
-  {% comment %} </a> {% endcomment %}
+  </a>
   </div>
 {% endfor %}
 
