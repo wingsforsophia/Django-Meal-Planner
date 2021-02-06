@@ -23,22 +23,4 @@
   </div>
 </div>
 
-
-    {% comment %} <table>
-      <thead>
-        <tr><th>Date</th><th>Meal</th><th>Name</th></tr>
-      </thead>
-      <tbody>
-        {% for meal in plan.meal_set.all %}
-          <tr>
-            <td>{{meal.date}}</td>
-            <td>{{meal.get_meal_display}}</td>
-            <td>{{meal.name}}</td>
-          </tr>
-        {% endfor %}
-      </tbody>
-    </table> {% endcomment %}
- 
-
-
 {% endblock %}
