@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import MealForm
 from .models import Plan
@@ -16,6 +16,14 @@ def plans_detail(request, plan_id):
   plan = Plan.objects.get(id=plan_id)
   meal_form = MealForm()
   return render(request, 'plans/detail.html', { 'plan': plan, 'meal_form': meal_form })
+
+def add_meal(request, plan_id):
+  form = MealForm(request.POST)
+  if form.is_valid():
+    new_meal = form.save(commit=False)
+    new_meal.plan_id = plan_id
+    new_meal.save()
+  return redirect('detail', plan_id=plan_id)
 
 class PlanCreate(CreateView):
   model = Plan
