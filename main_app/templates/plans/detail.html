@@ -2,7 +2,7 @@
 
 <h1>Plan Details</h1>
 
-<div class="card rounded-3 shadow-lg mb-5" style="width: 18rem">
+<div class="card rounded-3 shadow-lg mb-3" style="width: 18rem">
   <div class="card-body">
     <h5 class="card-title pb-2">{{ plan.name }}</h5>
 
@@ -12,9 +12,15 @@
     <a href="{% url 'plans_delete' plan.id %}" class="btn btn-danger">Delete</a>
   </div>
 </div>
-</div>
+</div> 
+<div class="card rounded-3 shadow-lg mb-1">
+  <form method="post">
+    {% csrf_token %}
+    {{ meal_form.as_p }}
+    <input type="submit" class="btn btn-primary" value="Add Meal">
+  </form>
+  </div>
 
- 
  <div class="card rounded-3 shadow-lg">
   <div class="card-body">
     {% for meal in plan.meal_set.all %}
