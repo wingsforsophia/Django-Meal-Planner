@@ -22,7 +22,7 @@ class Plan(models.Model):
     def get_absolute_url(self):
         return reverse("detail", kwargs={"plan_id": self.id})
         
-class Feeding(models.Model):
+class Meal(models.Model):
     date = models.DateField('meal date')
     name = models.CharField(max_length=100)
     meal = models.CharField(
