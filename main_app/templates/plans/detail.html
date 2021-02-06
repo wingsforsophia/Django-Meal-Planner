@@ -2,18 +2,29 @@
 
 <h1>Plan Details</h1>
 
-<div class="card rounded-3 shadow-lg" style="width: 18rem">
+<div class="card rounded-3 shadow-lg mb-5" style="width: 18rem">
   <div class="card-body">
-    <h5 class="card-title">{{ plan.name }}</h5>
+    <h5 class="card-title pb-2">{{ plan.name }}</h5>
 
     <p>Start: {{ plan.start }}</p>
+    <p>End: {{ plan.end }}</p>
     <a href="{% url 'plans_update' plan.id %}" class="btn btn-primary">Edit </a>
     <a href="{% url 'plans_delete' plan.id %}" class="btn btn-danger">Delete</a>
   </div>
 </div>
+</div>
 
- <div class="col s6">
-    <table>
+ 
+ <div class="card rounded-3 shadow-lg">
+  <div class="card-body">
+    {% for meal in plan.meal_set.all %}
+    <p>{{meal.date}} - {{meal.get_meal_display}} - {{meal.name}} </p>
+     {% endfor %}
+  </div>
+</div>
+
+
+    {% comment %} <table>
       <thead>
         <tr><th>Date</th><th>Meal</th><th>Name</th></tr>
       </thead>
@@ -26,8 +37,8 @@
           </tr>
         {% endfor %}
       </tbody>
-    </table>
-  </div>
-</div>
+    </table> {% endcomment %}
+ 
+
 
 {% endblock %}
