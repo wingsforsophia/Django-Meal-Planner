@@ -1,16 +1,32 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <h1>Plan Details</h1>
 
-<div class="card rounded-3 shadow-lg" style="width: 18rem;">
+<div class="card rounded-3 shadow-lg" style="width: 18rem">
   <div class="card-body">
-  <h5 class="card-title">{{ plan.name }}</h5>
-    
+    <h5 class="card-title">{{ plan.name }}</h5>
+
     <p>Start: {{ plan.start }}</p>
-     <a href="{% url 'plans_update' plan.id %}" class="btn btn-primary">Edit </a>
+    <a href="{% url 'plans_update' plan.id %}" class="btn btn-primary">Edit </a>
     <a href="{% url 'plans_delete' plan.id %}" class="btn btn-danger">Delete</a>
- 
+  </div>
+</div>
+
+ <div class="col s6">
+    <table>
+      <thead>
+        <tr><th>Date</th><th>Meal</th><th>Name</th></tr>
+      </thead>
+      <tbody>
+        {% for meal in plan.meal_set.all %}
+          <tr>
+            <td>{{meal.date}}</td>
+            <td>{{meal.get_meal_display}}</td>
+            <td>{{meal.name}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 </div>
 
