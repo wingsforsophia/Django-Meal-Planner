@@ -32,17 +32,20 @@
         <a href="{% url 'recipes_detail' recipe.id  %}">Recipe </a>
       {% endfor %}
     {% endif %}
-   
-    <select class="form-select form-select-sm w-auto" aria-label=".form-select-sm example">
-      <option selected>Add a Recipe</option>
-      {% for recipe in recipes %}
-      <option value="{{ recipe }}">{{ recipe.name }}</option>
-      {% endfor %}
-    </select>
+   <form action="plans/{{plan.id}}/meals/{{meal.id}}/assoc_recipe/{{recipe.id}}/" method="post">
+    {% csrf_token %}
+      <select class="form-select form-select-sm w-auto" aria-label=".form-select-sm example">
+        <option selected>Add a Recipe</option>
+        {% for recipe in recipes %}
+        <option value="{{ recipe.id }}">{{ recipe.name }}</option>
+        {% endfor %}
+      </select>
       
-    <button class="btn btn-secondary btn-sm " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-      Add
-    </button> <br />
+      <button class="btn btn-secondary btn-sm " type="submit" >
+        Add
+      </button> 
+    </form>
+    <br />
 
     {% comment %} <a href="{% url 'meal_delete' plan.id meal.id %}" class="btn btn-sm btn-danger"> delete meal </a><br/> {% endcomment %}
     
