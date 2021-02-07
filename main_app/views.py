@@ -48,6 +48,11 @@ def add_photo(request, recipe_id):
             print('An error occurred uploading file to S3')
     return redirect('recipes_detail', recipe_id=recipe_id)
 
+def recipes_detail(request, recipe_id):
+  recipe = Recipe.objects.get(id=recipe_id)
+  return render(request, 'main_app/recipe_detail.html', {
+    'recipe': recipe
+  })  
 
 class PlanCreate(CreateView):
   model = Plan
@@ -63,7 +68,7 @@ class PlanDelete(DeleteView):
 
 class MealDelete(DeleteView):
   model = Meal
-  success_url = '/plans/'   
+  success_url = '/'   
 
 class RecipeList(ListView):
   model = Recipe
@@ -81,11 +86,4 @@ class RecipeDelete(DeleteView):
   model = Recipe
   success_url = '/recipes/'  
 
-# class RecipeDetail(DetailView):
-#   model = Recipe
 
-def recipes_detail(request, recipe_id):
-  recipe = Recipe.objects.get(id=recipe_id)
-  return render(request, 'main_app/recipe_detail.html', {
-    'recipe': recipe
-  })  
