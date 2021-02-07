@@ -42,7 +42,7 @@ class Meal(models.Model):
         default=MEALS[2][0]
     ) 
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE) 
-    recipes = models.ManyToManyField(Recipe)     
+    recipe = models.ManyToManyField(Recipe)     
 
     def __str__(self):
         return f"{self.name}, {self.get_meal_display()} on {self.date}"
