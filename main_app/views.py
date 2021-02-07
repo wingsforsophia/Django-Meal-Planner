@@ -31,7 +31,7 @@ def add_meal(request, plan_id):
   return redirect('detail', plan_id=plan_id)
 
 def assoc_recipe(request, plan_id, meal_id, recipe_id):
-  Plan.objects.get(id=plan_id).Meal.objects.get(id=meal_id).recipe.add(recipe_id)
+  Meal.objects.get(id=meal_id).recipe.add(recipe_id)
   return redirect('detail', plan_id=plan_id)  
 
 def add_photo(request, recipe_id):

@@ -11,7 +11,6 @@ urlpatterns = [
     path('plans/<int:plan_id>/add_meal/', views.add_meal, name='add_meal'),
     path('plans/<int:pk>/meals/<int:fk>/delete/', views.MealDelete.as_view(), name='meal_delete'),
     path('recipes/', views.RecipeList.as_view(), name='recipes_index'),
-    # path('recipes/<int:pk>/', views.RecipeDetail.as_view(), name='recipes_detail'),
     path('recipes/<int:recipe_id>/', views.recipes_detail, name='recipes_detail'),
     path('recipes/create/', views.RecipeCreate.as_view(), name='recipes_create'),
     path('recipes/<int:pk>/update/', views.RecipeUpdate.as_view(), name='recipes_update'),
