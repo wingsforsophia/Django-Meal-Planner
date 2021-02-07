@@ -25,28 +25,27 @@
  <div class="card rounded-3 shadow-lg">
   <div class="card-body">
     {% for meal in plan.meal_set.all %}
-    <p>{{meal.date}} - {{meal.get_meal_display}} - {{meal.name}} 
+  
+    {{meal.date}} - {{meal.get_meal_display}} - {{meal.name}} 
     {% if meal.recipe.count %}
-     {% for recipe in meal.recipe.all %}
-      <a href="{% url 'recipes_detail' recipe.id  %}">Recipe </a>
-    {% endfor %}
+      {% for recipe in meal.recipe.all %}
+        <a href="{% url 'recipes_detail' recipe.id  %}">Recipe </a>
+      {% endfor %}
     {% endif %}
    
-    <div class="dropdown">
-  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-    Add a Recipe
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    {% for recipe in recipes %}
-    <li><a class="dropdown-item" href="#">{{ recipe.name }}</a></li>
-    {% endfor %}
+    <select class="form-select form-select-sm w-auto" aria-label=".form-select-sm example">
+      <option selected>Add a Recipe</option>
+      {% for recipe in recipes %}
+      <option value="{{ recipe }}">{{ recipe.name }}</option>
+      {% endfor %}
+    </select>
+      
+    <button class="btn btn-secondary btn-sm " type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+      Add
+    </button> <br />
 
+    {% comment %} <a href="{% url 'meal_delete' plan.id meal.id %}" class="btn btn-sm btn-danger"> delete meal </a><br/> {% endcomment %}
     
-  </ul>
-</div>
-
-    
-    <a href="{% url 'meal_delete' plan.id meal.id %}" class="btn btn-sm btn-danger"> X </a></p>
     
      {% endfor %}
   </div>
