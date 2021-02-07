@@ -35,18 +35,18 @@ def assoc_recipe(request, plan_id, meal_id, recipe_id):
   return redirect('detail', plan_id=plan_id)  
 
 def add_photo(request, recipe_id):
-    photo_file = request.FILES.get('photo-file', None)
-    if photo_file:
-        s3 = boto3.client('s3')
-        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
-        try:
-            s3.upload_fileobj(photo_file, BUCKET, key)
-            url = f"{S3_BASE_URL}{BUCKET}/{key}"
-            photo = Photo(url=url, recipe_id=recipe_id)
-            photo.save()
-        except:
-            print('An error occurred uploading file to S3')
-    return redirect('recipes_detail', recipe_id=recipe_id)
+  photo_file = request.FILES.get('photo-file', None)
+  if photo_file:
+      s3 = boto3.client('s3')
+      key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+      try:
+          s3.upload_fileobj(photo_file, BUCKET, key)
+          url = f"{S3_BASE_URL}{BUCKET}/{key}"
+          photo = Photo(url=url, recipe_id=recipe_id)
+          photo.save()
+      except:
+          print('An error occurred uploading file to S3')
+  return redirect('recipes_detail', recipe_id=recipe_id)
 
 def recipes_detail(request, recipe_id):
   recipe = Recipe.objects.get(id=recipe_id)
@@ -81,6 +81,7 @@ class RecipeCreate(CreateView):
 class RecipeUpdate(UpdateView):
   model = Recipe
   fields = '__all__'
+  success_url = '/recipes/' 
 
 class RecipeDelete(DeleteView):
   model = Recipe
