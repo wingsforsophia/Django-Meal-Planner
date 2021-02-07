@@ -2,8 +2,11 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .forms import MealForm
-from .models import Plan, Meal, Recipe
-
+from .models import Plan, Meal, Recipe, Photo
+import uuid
+import boto3
+S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com/'
+BUCKET = 'djangomealplanner'
 
 # Create your views here.
 def home(request):
@@ -30,6 +33,21 @@ def add_meal(request, plan_id):
 def assoc_recipe(request, plan_id, meal_id, recipe_id):
   Plan.objects.get(id=plan_id).Meal.objects.get(id=meal_id).recipe.add(recipe_id)
   return redirect('detail', plan_id=plan_id)  
+
+def add_photo(request, recipe_id):
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            photo = Photo(url=url, recipe_id=recipe_id)
+            photo.save()
+        except:
+            print('An error occurred uploading file to S3')
+    return redirect('detail', recipe_id=recipe_id)
+
 
 class PlanCreate(CreateView):
   model = Plan

@@ -50,3 +50,10 @@ class Meal(models.Model):
 
     class Meta:
         ordering = ['date']    
+
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)        
+
+    def __str__(self):
+        return f"Photo for recipe_id: {self.recipe_id} @{self.url}"
