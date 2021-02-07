@@ -46,7 +46,7 @@ def add_photo(request, recipe_id):
             photo.save()
         except:
             print('An error occurred uploading file to S3')
-    return redirect('detail', recipe_id=recipe_id)
+    return redirect('recipes_detail', recipe_id=recipe_id)
 
 
 class PlanCreate(CreateView):
