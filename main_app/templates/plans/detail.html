@@ -24,7 +24,17 @@
  <div class="card rounded-3 shadow-lg">
   <div class="card-body">
     {% for meal in plan.meal_set.all %}
-    <p>{{meal.date}} - {{meal.get_meal_display}} - {{meal.name}} <a href="{% url 'meal_delete' plan.id meal.id %}">delete </a></p>
+    <p>{{meal.date}} - {{meal.get_meal_display}} - {{meal.name}} 
+    {% if meal.recipe.count %}
+     {% for recipe in meal.recipe.all %}
+      <a href="{% url 'recipes_detail' recipe.id  %}">Recipe </a>
+      
+    
+
+    {% endfor %}
+    {% endif %}
+    
+    <a href="{% url 'meal_delete' plan.id meal.id %}" class="btn btn-danger"> X </a></p>
      {% endfor %}
   </div>
 </div>
