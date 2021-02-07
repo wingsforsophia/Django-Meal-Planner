@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
 
 <h1>Plan Details</h1>
 
@@ -36,10 +37,9 @@
     Add a Recipe
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-    <li><a class="dropdown-item" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
+    {% for recipe in recipes %}
+    <li><a class="dropdown-item" href="#">{{ recipe.name }}</a></li>
+    {% endfor %}
 
     
   </ul>
