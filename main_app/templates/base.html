@@ -43,10 +43,10 @@
                 <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Add Recipe</a>
+                <a class="nav-link" href="{% url 'recipes_create' %}">Add Recipe</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">View Recipes</a>
+                <a class="nav-link" href="{% url 'recipes_index' %}">View Recipes</a>
               </li>
                <li class="nav-item">
                 <a class="nav-link" href="{% url 'plans_create' %}">Add Plan</a>
