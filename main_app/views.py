@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import MealForm
-from .models import Plan
+from .models import Plan, Meal
 
 
 # Create your views here.
@@ -36,3 +36,7 @@ class PlanUpdate(UpdateView):
 class PlanDelete(DeleteView):
   model = Plan
   success_url = '/plans/'    
+
+class MealDelete(DeleteView):
+  model = Meal
+  success_url = '/plans/'   
