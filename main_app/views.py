@@ -51,6 +51,7 @@ class RecipeDetail(DetailView):
 class RecipeCreate(CreateView):
   model = Recipe
   fields = '__all__'
+  success_url = '/recipes/' 
 
 class RecipeUpdate(UpdateView):
   model = Recipe
