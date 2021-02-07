@@ -61,6 +61,7 @@ class PlanCreate(CreateView):
 class PlanUpdate(UpdateView):
   model = Plan
   fields = '__all__'
+  success_url = '/plans/'  
 
 class PlanDelete(DeleteView):
   model = Plan
