@@ -15,8 +15,9 @@ def plans_index(request):
 
 def plans_detail(request, plan_id):
   plan = Plan.objects.get(id=plan_id)
+  recipes = Recipe.objects.all()
   meal_form = MealForm()
-  return render(request, 'plans/detail.html', { 'plan': plan, 'meal_form': meal_form })
+  return render(request, 'plans/detail.html', { 'plan': plan, 'recipes': recipes, 'meal_form': meal_form })
 
 def add_meal(request, plan_id):
   form = MealForm(request.POST)

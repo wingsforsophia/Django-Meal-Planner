@@ -28,13 +28,26 @@
     {% if meal.recipe.count %}
      {% for recipe in meal.recipe.all %}
       <a href="{% url 'recipes_detail' recipe.id  %}">Recipe </a>
-      
-    
-
     {% endfor %}
     {% endif %}
+   
+    <div class="dropdown">
+  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+    Add a Recipe
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+
     
-    <a href="{% url 'meal_delete' plan.id meal.id %}" class="btn btn-danger"> X </a></p>
+  </ul>
+</div>
+
+    
+    <a href="{% url 'meal_delete' plan.id meal.id %}" class="btn btn-sm btn-danger"> X </a></p>
+    
      {% endfor %}
   </div>
 </div>
