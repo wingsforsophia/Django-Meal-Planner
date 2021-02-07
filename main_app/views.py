@@ -68,9 +68,6 @@ class MealDelete(DeleteView):
 class RecipeList(ListView):
   model = Recipe
 
-class RecipeDetail(DetailView):
-  model = Recipe
-
 class RecipeCreate(CreateView):
   model = Recipe
   fields = '__all__'
@@ -83,3 +80,12 @@ class RecipeUpdate(UpdateView):
 class RecipeDelete(DeleteView):
   model = Recipe
   success_url = '/recipes/'  
+
+# class RecipeDetail(DetailView):
+#   model = Recipe
+
+def recipes_detail(request, recipe_id):
+  recipe = Recipe.objects.get(id=recipe_id)
+  return render(request, 'main_app/recipe_detail.html', {
+    'recipe': recipe
+  })  
