@@ -57,6 +57,9 @@ def recipes_detail(request, recipe_id):
 class PlanCreate(CreateView):
   model = Plan
   fields = '__all__'
+  def form_valid(self, form):
+    form.instance.user = self.request.user  
+    return super().form_valid(form)
 
 class PlanUpdate(UpdateView):
   model = Plan
