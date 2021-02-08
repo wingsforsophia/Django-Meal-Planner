@@ -57,6 +57,7 @@ def recipes_detail(request, recipe_id):
 class PlanCreate(CreateView):
   model = Plan
   fields = '__all__'
+
   def form_valid(self, form):
     form.instance.user = self.request.user  
     return super().form_valid(form)
@@ -82,6 +83,10 @@ class RecipeCreate(CreateView):
   fields = '__all__'
   success_url = '/recipes/' 
 
+  def form_valid(self, form):
+    form.instance.user = self.request.user  
+    return super().form_valid(form)
+
 class RecipeUpdate(UpdateView):
   model = Recipe
   fields = '__all__'
@@ -91,4 +96,16 @@ class RecipeDelete(DeleteView):
   model = Recipe
   success_url = '/recipes/'  
 
-
+def signup(request):
+  error_message = ''
+  if request.method == 'POST':
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      login(request, user)
+      return redirect('index')
+    else:
+      error_message = 'Invalid sign up - try again'
+  form = UserCreationForm()
+  context = {'form': form, 'error_message': error_message}
+  return render(request, 'registration/signup.html', context)
