@@ -33,7 +33,7 @@
       {% endfor %}
       {% else %}
    
-   <form action="" method="post">
+   <form action="/meals/{{meal.id}}/assoc_recipe/{{recipe.id}}" method="post">
     {% csrf_token %}
       <select class="form-select form-select-sm w-auto" aria-label=".form-select-sm example">
         <option selected>Add a Recipe</option>
