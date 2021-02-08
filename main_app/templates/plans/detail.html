@@ -32,8 +32,8 @@
         <a href="{% url 'recipes_detail' recipe.id  %}">Recipe </a>
       {% endfor %}
       {% else %}
-   
-   <form action="/meals/{{meal.id}}/assoc_recipe/{{recipe.id}}" method="post">
+      
+   <form action="#" method="post">
     {% csrf_token %}
       <select class="form-select form-select-sm w-auto" aria-label=".form-select-sm example">
         <option selected>Add a Recipe</option>
@@ -47,6 +47,7 @@
       </button> 
     </form>
     <br />
+   
      {% endif %}
 
     <a href="{% url 'meal_delete' meal.id %}" class="btn btn-sm btn-danger mb-4"> delete meal </a>  <br />  
