@@ -8,6 +8,7 @@ import boto3
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com/'
 BUCKET = 'djangomealplanner'
 
@@ -63,7 +64,7 @@ def recipes_detail(request, recipe_id):
     'recipe': recipe
   })  
 
-class PlanCreate(CreateView):
+class PlanCreate(LoginRequiredMixin, CreateView):
   model = Plan
   fields = '__all__'
 
@@ -71,23 +72,23 @@ class PlanCreate(CreateView):
     form.instance.user = self.request.user  
     return super().form_valid(form)
 
-class PlanUpdate(UpdateView):
+class PlanUpdate(LoginRequiredMixin, UpdateView):
   model = Plan
   fields = '__all__'
   success_url = '/plans/'  
 
-class PlanDelete(DeleteView):
+class PlanDelete(LoginRequiredMixin, DeleteView):
   model = Plan
   success_url = '/plans/'    
 
-class MealDelete(DeleteView):
+class MealDelete(LoginRequiredMixin, DeleteView):
   model = Meal
   success_url = '/plans/'  
 
-class RecipeList(ListView):
+class RecipeList(LoginRequiredMixin, ListView):
   model = Recipe
 
-class RecipeCreate(CreateView):
+class RecipeCreate(LoginRequiredMixin, CreateView):
   model = Recipe
   fields = '__all__'
   success_url = '/recipes/' 
@@ -96,12 +97,12 @@ class RecipeCreate(CreateView):
     form.instance.user = self.request.user  
     return super().form_valid(form)
 
-class RecipeUpdate(UpdateView):
+class RecipeUpdate(LoginRequiredMixin, UpdateView):
   model = Recipe
   fields = '__all__'
   success_url = '/recipes/' 
 
-class RecipeDelete(DeleteView):
+class RecipeDelete(LoginRequiredMixin, DeleteView):
   model = Recipe
   success_url = '/recipes/'  
 
