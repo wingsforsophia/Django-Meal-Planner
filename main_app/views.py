@@ -5,6 +5,8 @@ from .forms import MealForm
 from .models import Plan, Meal, Recipe, Photo
 import uuid
 import boto3
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com/'
 BUCKET = 'djangomealplanner'
 
