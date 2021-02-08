@@ -33,7 +33,7 @@
       {% endfor %}
       {% else %}
    
-   <form action="#" method="post">
+   <form action="" method="post">
     {% csrf_token %}
       <select class="form-select form-select-sm w-auto" aria-label=".form-select-sm example">
         <option selected>Add a Recipe</option>
@@ -49,7 +49,7 @@
     <br />
      {% endif %}
 
-    <a href="{% url 'meal_delete' plan.id meal.id %}" class="btn btn-sm btn-danger mb-4"> delete meal </a>  <br />  
+    <a href="{% url 'meal_delete' meal.id %}" class="btn btn-sm btn-danger mb-4"> delete meal </a>  <br />  
     
      {% endfor %}
   </div>

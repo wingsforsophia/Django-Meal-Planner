@@ -51,6 +51,9 @@ class Meal(models.Model):
     class Meta:
         ordering = ['date']    
 
+    def get_absolute_url(self):
+        return reverse("detail", kwargs={"plan_id": self.id})    
+
 class Photo(models.Model):
     url = models.CharField(max_length=200)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)        
