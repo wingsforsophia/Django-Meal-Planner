@@ -69,7 +69,7 @@ class PlanDelete(DeleteView):
 
 class MealDelete(DeleteView):
   model = Meal
-  success_url = '/'   
+  success_url = '/plans/'  
 
 class RecipeList(ListView):
   model = Recipe
