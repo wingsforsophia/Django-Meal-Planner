@@ -121,3 +121,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/plans/'
+
+LOGOUT_REDIRECT_URL = '/'
