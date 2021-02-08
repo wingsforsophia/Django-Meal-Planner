@@ -7,6 +7,7 @@ import uuid
 import boto3
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com/'
 BUCKET = 'djangomealplanner'
 
@@ -14,16 +15,19 @@ BUCKET = 'djangomealplanner'
 def home(request):
   return render(request, 'base.html')
 
+@login_required
 def plans_index(request):
-  plans = Plan.objects.all()
+  plans = Plan.objects.filter(user=request.user)
   return render(request, 'plans/index.html', { 'plans': plans })
 
+@login_required
 def plans_detail(request, plan_id):
   plan = Plan.objects.get(id=plan_id)
   recipes = Recipe.objects.all()
   meal_form = MealForm()
   return render(request, 'plans/detail.html', { 'plan': plan, 'recipes': recipes, 'meal_form': meal_form })
 
+@login_required
 def add_meal(request, plan_id):
   form = MealForm(request.POST)
   if form.is_valid():
@@ -32,10 +36,12 @@ def add_meal(request, plan_id):
     new_meal.save()
   return redirect('detail', plan_id=plan_id)
 
+@login_required
 def assoc_recipe(request, meal_id, recipe_id):
   Meal.objects.get(id=meal_id).recipe.add(recipe_id)
   return redirect('/')  
 
+@login_required
 def add_photo(request, recipe_id):
   photo_file = request.FILES.get('photo-file', None)
   if photo_file:
@@ -50,6 +56,7 @@ def add_photo(request, recipe_id):
           print('An error occurred uploading file to S3')
   return redirect('recipes_detail', recipe_id=recipe_id)
 
+@login_required
 def recipes_detail(request, recipe_id):
   recipe = Recipe.objects.get(id=recipe_id)
   return render(request, 'main_app/recipe_detail.html', {
