@@ -21,16 +21,17 @@
     <input type="submit" class="btn btn-primary" value="Add Meal">
   </form>
   </div>
-
+{% comment %} begin meal list {% endcomment %}
  <div class="card rounded-3 shadow-lg">
   <div class="card-body">
     {% for meal in plan.meal_set.all %}
-  
-    {{meal.date}} - {{meal.get_meal_display}} - {{meal.name}} 
+      {{meal.date}} - {{meal.get_meal_display}} - {{meal.name}} 
+      {% comment %} basic display above {% endcomment %}
     {% if meal.recipe.count %}
       {% for recipe in meal.recipe.all %}
         <a href="{% url 'recipes_detail' recipe.id  %}">Recipe </a>
       {% endfor %}
+      {% comment %} if it has a recipe attached, show the recipe as a link {% endcomment %}
       {% else %}
       
    <form action="#" method="post">
@@ -53,6 +54,7 @@
     <a href="{% url 'meal_delete' meal.id %}" class="btn btn-sm btn-danger mb-4"> delete meal </a>  <br />  
     
      {% endfor %}
+     {% comment %} end meal list {% endcomment %}
   </div>
 </div>
 
