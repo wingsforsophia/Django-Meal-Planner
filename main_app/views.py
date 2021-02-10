@@ -14,7 +14,7 @@ BUCKET = 'djangomealplanner'
 
 # Create your views here.
 def home(request):
-  return render(request, 'base.html')
+  return render(request, 'home.html')
 
 @login_required
 def plans_index(request):
