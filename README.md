@@ -9,7 +9,7 @@ Then make a Meal Plan and start adding meals!
 
 ## Screenshots
 ![First screenshot](https://i.imgur.com/g2I1BFI.png)
-<!-- ![Second screenshot](https://i.imgur.com/eDBUndZ.png) -->
+![Second screenshot](https://i.imgur.com/M7TOTab.png)
 
 
 ## Technologies Used
@@ -24,6 +24,7 @@ Then make a Meal Plan and start adding meals!
 * Get the recipes associating with the meal 
 * Getting a datepicker set up
 * Better Landing page
+* Work on layout
 
 ## Trello Board
 [Trello Planning Board](https://trello.com/b/tfY5aJqR/django-meal-planner)
