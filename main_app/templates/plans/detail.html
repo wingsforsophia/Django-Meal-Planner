@@ -14,7 +14,7 @@
   </div>
 </div>
 </div> 
-<div class="card rounded-3 shadow-lg mb-1">
+<div class="card rounded-3 shadow-lg mb-1" style="width: 18rem">
   <form  action="{% url 'add_meal' plan.id %}" method="post">
     {% csrf_token %}
     {{ meal_form.as_p }}
@@ -22,7 +22,7 @@
   </form>
   </div>
 {% comment %} begin meal list {% endcomment %}
- <div class="card rounded-3 shadow-lg">
+ <div class="card rounded-3 shadow-lg w-75" >
   <div class="card-body">
     {% for meal in plan.meal_set.all %}
       {{meal.date}} - {{meal.get_meal_display}} - {{meal.name}} 
