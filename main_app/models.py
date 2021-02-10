@@ -21,6 +21,9 @@ class Recipe(models.Model):
 
     def get_absolute_url(self):
         return reverse('recipe_detail', kwargs={'pk': self.id})    
+        
+    class Meta:
+        ordering = ['-id']     
 
 class Plan(models.Model):
     name = models.CharField(max_length=100)
