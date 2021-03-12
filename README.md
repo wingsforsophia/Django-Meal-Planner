@@ -1,6 +1,7 @@
 # Django-Meal-Planner
-[Django Meal Planner](https://django-meal-planner.herokuapp.com/):
-so you never have to ask "what are we having for dinner?" during your busy work week.
+[Django Meal Planner](https://django-meal-planner.herokuapp.com/)
+
+So you never have to ask "what are we having for dinner?" during your busy work week.
 
 
 ## Getting Started
